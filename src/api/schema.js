@@ -23,6 +23,8 @@ const typeDefs = `
 
     type Mutation {
         createUser(input: UserInput): User
+        updateUser(id: Int, input: UserInput): User
+        dropUser(id: Int): User
     }
 `
 

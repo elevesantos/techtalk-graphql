@@ -20,6 +20,23 @@ module.exports = {
             const id = result[0]
             return await db('users').where({ id }).first()
 
+        },
+
+        async updateUser(_, { id, input }) {
+            const result = await db('users').update({
+                name: input.name,
+                email: input.email,
+                password: input.password
+            }).where({ id });
+
+            return await db('users').where({ id }).first()
+
+        },
+
+        async dropUser(_, { id }) {
+            const row = await db('users').where({ id }).first();
+            await db('users').delete().where( { id } )
+            return row
         }
     }
 }
